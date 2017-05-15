@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	  <style>
+	.resultado{
+		font-size:2em; 
+	}
+	.volver{margin-top:30px;}
+	.volver:hover{cursor:pointer}
+ </style> 
+	 </head>
+<body>
+<div class="container brown lighten-5">
+<div class="row">
+	<div class="col s10">
+		<h2>Variables de tipo Objeto</h2>
+	</div>
+	<div class="col s2">
+		<i onclick="goBack()" class="medium material-icons red-text volver">input</i>
+	</div>
+</div>
+<div class="row">
+      <div class="col s12">
+        <div class="card-panel teal">
+          <span class="white-text flow-text">Qué tipo de variable se necesita para almacenar varios datos sobre un grupo de trabajadores? La respuesta es una variable de tipo objeto. Con este tipo de variables se puede almacenar en un único elemento varios tipos de información, como el nombre, puesto, departamento, email, teléfono, etc. de cada trabajador.
+          </span>
+        </div>
+      </div>
+	  <div class="col s12">
+        <div class="card-panel teal">
+          <span class="white-text flow-text">Una variable de tipo objeto está compuesta por dos elementos, uno sería el nombre del campo o etiqueta y el otro contiene el valor. Como este tipo de variable permiten guardar infinidad de datos, cada uno se separa por una coma. Siguiendo el ejemplo anterior la variable quedaría:<br>
+		  var trabajador1={nombre:"Manuel", puesto: "administrativo", email:"manuel@empresa.com", departamento:"Contabilidad", edad:40}
+          </span>
+        </div>
+      </div>
+	  <div class="col s12">
+        <div class="card-panel teal">
+          <span class="white-text flow-text">Para acceder a cada una de las partes del objeto, basta con añadir un punto y el nombre del campo/etiqueta que se desea acceder.
+		  Por ejemplo, para mostrar por consola el email del trabajador, de debería declarar: <br>
+		  <em>console.log(trabajador1.email);</em><br>
+		  Este script está declarado y se puede ver desde el inspector del navegador.
+		  Para modificar un valor del objeto, se accede igualmente con el punto y se iguala al nuevo valor. Ejemplo de modificar la edad del trabajador: <br>
+		  <em>trabajador1.edad=20;<br>
+		  console.log(trabajador1);</em>
+          </span>
+        </div>
+      </div>
+	   <div class="col s12">
+        <div class="card-panel teal">
+		<h4 class="white-text">Arrays y Objetos</h4>
+          <span class="white-text flow-text">
+		  Los arrays permiten almacenar más de un tipo de información, pero no como los objetos. Se puede decir que los objetos son la evolución de los arrays al permitir etiquetar cada valor que se almacena.<br>
+		  Pero para almacenar varios objetos en una sola variable se necesitan usar los arrays.<br>
+		  Un array de objetos es el tipo de variable que siempre se utiliza cuando se interactúa con una base de datos. Siguiendo el ejemplo, si el listado de trabajadores se obtuviese a través de una llamada Ajax a una base de datos, seguramente nos devuelva un array con cada uno de los trabajadores como un objeto.<br>
+		  Ejemplo de array de objeto con tres trabajadores:<br>
+	  
+		  var trabajadores=[
+		  {nombre:"Manuel", puesto: "administrativo", email:"manuel@empresa.com", departamento:"Contabilidad", edad:40},
+		  {nombre:"Abril", puesto: "administrativa", email:"abril@empresa.com", departamento:"Ventas", edad:20},
+		  {nombre:"Arnau", puesto: "comercial", email:"aranau@empresa.com", departamento:"Compras", edad:30}  
+							];
+		  
+          </span>
+        </div>
+      </div>
+	   <div class="col s12">
+        <div class="card-panel teal">
+		<h4 class="white-text">Recorrer array de objetos</h4>
+          <span class="white-text flow-text">
+		  Siguiendo el ejemplo anterior, si el objetivo es crear un listado de los trabajadores, necesitamos recorrer todo el array para acceder a la información de cada uno de los trabajadores.<br>
+		  Para recorrer un array de objetos se recomienda usar una de estas dos formas:<br>
+		  <h5>Usando un blucle de tipo FOR</h5>
+		  <span>100% JavaScript, el bucle for es una de las formas más cómodas de recorrer un array de objetos. Ejemplo:<br>
+		  for (i in trabajadores){
+			//Para acceder a cada uno de los trabajadores, la variable "i" se encarga de ir incrementándose hasta llegar al final del array. Para mostrar por consola el nombre de cada trabajador seria:
+			console.log(trabajadores[i].nombre);
+		  }
+		  </span>
+		  <h5>Usando $.each de jQuery</h5>
+		  Otra manera también muy usada es con el selector $.each de jQuery. Recordar que para que esto funcione, la librería jQuery debe estar cargada previamente.<br>
+		  
+		  $.each(trabajadores, function (campo,valor){
+				console.log(valor.nombre);		  
+		  })
+		  
+		  
+		  
+          </span>
+        </div>
+      </div>
+	  <div class="col s12">
+        <div class="card-panel teal">
+		<h4 class="white-text">Añadir/Eliminar Objetos de un Array</h4>
+          <span class="white-text flow-text">
+		<h5>Añadir nuevo objeto a Array existente</h5>
+		Para añadir nuevos elementos en un array se usa el comando "push". Con los objetos no hay cambios, se usa el mismo método. En el ejemplo, se crear un nuevo objeto y se añade al array de trabajadores:<br>
+		var trabajador4={nombre:"andres",email:"andres@empresa.com", departamento:"ventas",puesto:"gerente", edad:45};
+		trabajadores.push(trabajador4);
+		<h5>Elminar Objeto de un Array</h5>
+		<span>Existen varias formas de eliminar contenido de un array. Una de las más útiles o usadas es el comando splice, al cual le indicamos la posición anterior a partir de la cual debe eliminar elementos y el número de elementos a eliminar desde esa posición, generalmente siempre es 1.<br>
+		Siguiendo con el ejemplo, si la intención es eliminar del array de objetos el segundo trabajador, debemos indicar que desde la posición 1 (segunda posición del array) elimine un objeto:<br>
+		trabajadores.splice(0,1);<br>
+		La traducción sería: desde el primer elemento, elimina 1 elemento, con lo que elimina el primer trabajador.<br>
+		Otro ejemplo: Eliminar el tercer trabajador:<br>
+		trabajadores.splice(2,1);
+		Elimina el trabajador desde la posición que se le indica, la 2(el tercer elemento del array) y el segundo elemento es cuantos elementos desde esa posición debe eliminar.
+		</span>
+		
+          </span>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+
+$(document).ready(function(){
+	//Se declara variable de tipo objeto cuando la página esté ya cargada.
+	var trabajador1={nombre:"Manuel", puesto: "administrativo", email:"manuel@empresa.com", departamento:"Contabilidad", edad:40};
+	//Acceder al email del trabajador
+	console.log(trabajador1.email);
+	//Modificar la edad del trabajador
+	trabajador1.edad=20;
+	//Mostrar el valor modificado.
+	console.log(trabajador1);
+	//array de 3 objetos
+	var trabajadores=[
+		  {nombre:"Manuel", puesto: "administrativo", email:"manuel@empresa.com", departamento:"Contabilidad", edad:40},
+		  {nombre:"Abril", puesto: "administrativa", email:"abril@empresa.com", departamento:"Ventas", edad:20},
+		  {nombre:"Arnau", puesto: "comercial", email:"aranau@empresa.com", departamento:"Compras", edad:30}  
+							];
+	console.log('Se muestra el array de trabajadores, para ver por consola el contenido de un objeto NO hay que concatenarlo con un texto. Inspecionar esta línea para entender mejor.');
+	console.log('Mostrando array con texto concatenado en el console.log. '+trabajadores);
+	console.log(trabajadores);
+	//Recorrer array con bucle for
+ for (i in trabajadores){
+			//Para acceder a cada uno de los trabajadores, la variable "i" se encarga de ir incrementándose hasta llegar al final del array. Para mostrar por consola el nombre de cada trabajador seria:
+console.log(trabajadores[i].nombre);
+		  }	
+	//Recorrer Array con jQuery. 
+	$.each(trabajadores, function (campo,valor){
+				console.log(valor.nombre);		  
+		  })
+	
+	//añadir nuevos elementos a un array
+	//Se crea nuevo objeto
+	var trabajador4={nombre:"andres",email:"andres@empresa.com", departamento:"ventas",puesto:"gerente", edad:45};
+	//Se añade el nuevo trabajador al array de objetos con todos los trabajadores.
+	trabajadores.push(trabajador4);
+	//Se muestran todos los trabajadores
+	console.log(trabajadores);
+	//Se elimina el tercer trabajador, el primer indicador es desde dónde debe empezar a eliminar y el segundo cuántos elementos debe eliminar.
+	trabajadores.splice(2,1);
+	console.log(trabajadores);
+
+
+
+
+
+
+
+	
+	
+})
+</script>  
+</body>
+</html>

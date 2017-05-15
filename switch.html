@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	   <style>
+	.resultado{
+		font-size:2em; 
+	}
+	.volver{margin-top:30px;}
+	.volver:hover{cursor:pointer}
+ </style>
+</head>
+<body>
+<div class="container brown lighten-5">
+<div class="row">
+	<div class="col s10">
+		<h2>Operador Switch</h2>
+	</div>
+	<div class="col s2">
+		<i onclick="goBack()" class="medium material-icons red-text volver">input</i>
+	</div>
+</div>
+<div class="row">
+<div class="col s6">
+<form id="switch">
+<div class="input-field">
+<input class="validate" type="text" id="nota1" pattern="[0-9]{1,20}">
+<label for="nota1">Introduce nota1</label>
+</div>
+<div class="input-field">
+<input class="validate" type="text" id="nota2" pattern="[0-9]{1,20}">
+<label for="nota2">Introduce nota2</label>
+</div>
+<div class="input-field">
+<input class="validate" type="text" id="nota3" pattern="[0-9]{1,20}">
+<label for="nota3">Introduce nota3</label>
+</div>
+</form>
+</div>
+<div class="col s6 center">
+<p class="resultado" id="resultado">
+</p>
+<button onClick="notas()" class="waves-effect waves-light btn">Calcular</button>
+</div>
+</div>
+</div>
+<script>
+function goBack() {
+    window.history.back();
+}
+
+function notas(){
+	var nota1=$('#nota1').val();
+	nota1=parseInt(nota1);
+	var nota2=$('#nota2').val();
+	nota2=parseInt(nota2);
+	var nota3=$('#nota3').val();
+	nota3=parseInt(nota3);
+	
+	var promedio = (nota1+nota2+nota3)/3;
+	promedio=promedio.toFixed(2);
+	
+	switch(true){
+		case (promedio<5): 
+				var notaTexto="<span class='white red-text'><strong>insuficiente</strong></span>";
+				break;
+		case ((promedio>=5)&&(promedio<6)):
+				var notaTexto="suficiente";
+				break;
+		case ((promedio>=6)&&(promedio<7.5)):
+				var notaTexto="Bien";
+				break;
+		case ((promedio>=7.5)&&(promedio<8.5)):
+				var notaTexto="Notable";
+				break;
+		case (promedio>=8.5):
+				var notaTexto="Excelente";
+				break;
+		default: var notaTexto="No se puede identificar la nota";
+	}
+	
+	$('#resultado').html('La nota final es: '+promedio+' con una valoración de '+notaTexto);
+}
+</script>
+
+
+<!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  
+</body>
+</html>

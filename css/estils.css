@@ -1,0 +1,12 @@
+.volver{margin-top:30px;}
+.volver:hover{cursor:pointer}
+#visor, #thumbs, #visor2 {width:85%;margin:0 auto;display:flex}
+#thumbs {margin-top:4px;}
+#thumbs div {float:left;
+             border-right: 2px solid transparent;
+             border-left: 2px solid transparent;
+             width:25%;
+             }
+#thumbs img, #fotoVisor, #visor2 img{width:100%}
+
+

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+ <link rel="stylesheet" href="css/estils.css">
+  <!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+</head>
+<body>
+<div id="caja" class="container red">
+
+<div class="row">
+	<div class="col s10">
+		<h2 class="white-text">Mostrar/Ocultar contenido</h2>
+	</div>
+	<div class="col s2">
+		<i onclick="goBack()" class="medium material-icons white-text volver">input</i>
+	</div>
+</div>
+<h4 class="white-text">Método 1:</h4>
+<p class="flow-text white-text">Se usa función cargaFoto para enviar la foto que ha de cambiar y el color de fondo del container usando el .attr y el .addClass. Este método provoca que las fotos carguen lentas a veces.</p>
+<div id="visor">
+	<img id="fotoVisor" src="img/menorca1.jpg" title="Son Saura" alt="Son Saura Menorca">
+</div>
+<div id="thumbs">
+	<div id="thumb1">
+		<img onclick="cargaFoto('menorca1','blue')" src="img/minis/menorca1.jpg" alt="son saura" title="son saura">
+	</div>
+	<div id="thumb2">
+		<img onclick="cargaFoto('menorca2','green')" src="img/minis/menorca2.jpg" alt="Macarelleta" title="Macarelleta">
+	</div>
+	<div id="thumb3">
+		<img onclick="cargaFoto('menorca3','orange')" src="img/minis/menorca3.jpg" alt="Port ciutadella" title="Port ciutadella">
+	</div>
+	<div id="thumb4">
+		<img onclick="cargaFoto('menorca4','purple')" src="img/minis/menorca4.jpg" alt="Cala Blanca" title="Cala Blanca">
+	</div>
+</div>
+</div>
+
+<div id="caja2" class="container green">
+<h4 class="white-text">Método 2:</h4>
+<p class="flow-text white-text">Se cargan previamente todas las fotos grandes aplicando un CSS de tipo display:none para las que no debe mostrar de inicio (de la 2 a 4) y posteriormente con jQuery se hace el cambio con show/hide o fadeIn/fadeOut. La función que lo ejecuta es cambiaFoto</p>
+
+<div id="visor2">
+	<img id="fotosVisor1" src="img/menorca1.jpg" title="Son Saura" alt="Son Saura Menorca">
+	<img id="fotosVisor2" src="img/menorca2.jpg" title="Son Saura" alt="Son Saura Menorca" style="width:0">
+	<img id="fotosVisor3" src="img/menorca3.jpg" title="Son Saura" alt="Son Saura Menorca" style="display:none">
+	<img id="fotosVisor4" src="img/menorca4.jpg" title="Son Saura" alt="Son Saura Menorca" style="display:none">
+</div>
+<div id="thumbs">
+	<div id="thumb1">
+		<img onclick="cambiaFoto('menorca1','blue')" src="img/minis/menorca1.jpg" alt="son saura" title="son saura">
+	</div>
+	<div id="thumb2">
+		<img onclick="cambiaFoto('menorca2','green')" src="img/minis/menorca2.jpg" alt="Macarelleta" title="Macarelleta">
+	</div>
+	<div id="thumb3">
+		<img onclick="cambiaFoto('menorca3','orange')" src="img/minis/menorca3.jpg" alt="Port ciutadella" title="Port ciutadella">
+	</div>
+	<div id="thumb4">
+		<img onclick="cambiaFoto('menorca4','purple')" src="img/minis/menorca4.jpg" alt="Cala Blanca" title="Cala Blanca">
+	</div>
+</div>
+</div>
+
+
+
+<!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <script>
+	function goBack() {
+    window.history.back();
+		}
+	function cargaFoto(imagen,color){
+		//Ocultamos imagen para dar efecto visual
+		$('#fotoVisor').hide();
+		//Se carga la nueva imagen
+		$('#fotoVisor').attr('src','img/'+imagen+'.jpg');
+		//Se quitan las clases que tenga
+		$('#caja').removeClass();
+		//Se añaden las clases para color de fondo
+		$('#caja').addClass('container '+color);
+		//Se muestra la foto con efecto
+		$('#fotoVisor').fadeIn(1500);
+	}
+	
+	function cambiaFoto(imagen, color){
+		switch(imagen){
+			case 'menorca1':
+				$('#fotosVisor1').fadeIn();
+				$('#fotosVisor2').animate({width: "0"});
+				$('#fotosVisor3').hide();
+				$('#fotosVisor4').hide();
+				
+				break;
+			case 'menorca2':
+				$('#fotosVisor1').hide();
+				$('#fotosVisor2').animate({width: "100%"});
+				$('#fotosVisor3').hide();
+				$('#fotosVisor4').hide();
+				break;
+			case 'menorca3':
+				$('#fotosVisor1').hide();
+				$('#fotosVisor2').animate({width: "0"});
+				$('#fotosVisor3').fadeIn();
+				$('#fotosVisor4').hide();
+				break;
+			case 'menorca4':
+				$('#fotosVisor1').hide();
+				$('#fotosVisor2').animate({width: "0"});
+				$('#fotosVisor3').hide();
+				$('#fotosVisor4').show();
+		
+				
+				break;
+				
+			default: alert('error de foto');
+		}
+		$('#caja2').removeClass();
+		$('#caja2').addClass('container '+color);
+	}
+
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

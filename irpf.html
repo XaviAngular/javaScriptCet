@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	   <style>
+	.resultado{
+		font-size:2em; 
+	}
+	.volver{margin-top:30px;}
+	.volver:hover{cursor:pointer}
+ </style>
+</head>
+<body>
+<div class="container brown lighten-5">
+<div class="row">
+	<div class="col s10">
+		<h2>Cálculo IRPF</h2>
+	</div>
+	<div class="col s2">
+		<i onclick="goBack()" class="medium material-icons red-text volver">input</i>
+	</div>
+</div>
+<div class="row">
+<div class="col s6">
+<form id="switch">
+<div class="input-field">
+<input class="validate" type="text" id="salario" pattern="[0-9]{1,20}">
+<label for="salario">Introduce salario</label>
+</div>
+
+</form>
+</div>
+<div class="col s6 center">
+<p class="resultado" id="resultado">
+</p>
+<button onClick="calculaIrpf()" class="waves-effect waves-light btn">Calcular</button>
+</div>
+</div>
+</div>
+<script>
+function goBack() {
+    window.history.back();
+}
+
+function calculaIrpf(){
+	var sueldo=$('#salario').val();
+	sueldo=parseInt(sueldo);
+	
+	switch(true){
+		case (sueldo<=12000): 
+				var retencion=5;
+				break;
+		case ((sueldo>12000)&&(sueldo<=15000)):
+				var retencion=12;
+				break;
+		case ((sueldo>15000)&&(sueldo<=18000)):
+				var retencion=17;
+				break;
+		case ((sueldo>18000)&&(sueldo<=24000)):
+				var retencion=21;
+				break;
+		case (sueldo>24000):
+				var retencion=30;
+				break;
+		default: var retencion="No se puede identificar la nota";
+	}
+	
+	$('#resultado').html('La retención para un sueldo de:<strong> '+sueldo+'</strong> euros es del: '+retencion+'%. Con importe a pagar de '+sueldo*retencion/100+' euros.');
+}
+</script>
+
+
+<!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  
+</body>
+</html>
